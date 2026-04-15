@@ -1,0 +1,307 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #df8eff;
+  --color-primary-dim: #bb00fc;
+  --color-primary-fixed: #d878ff;
+  --color-primary-fixed-dim: #d061ff;
+  --color-primary-container: #d878ff;
+  --color-on-primary: #4f006d;
+  --color-on-primary-container: #3d0055;
+  --color-on-primary-fixed: #000000;
+  --color-on-primary-fixed-variant: #4b0068;
+  --color-inverse-primary: #9a00d0;
+
+  --color-secondary: #00eefc;
+  --color-secondary-dim: #00deec;
+  --color-secondary-fixed: #00eefc;
+  --color-secondary-fixed-dim: #00deec;
+  --color-secondary-container: #006970;
+  --color-on-secondary: #005359;
+  --color-on-secondary-container: #e3fdff;
+  --color-on-secondary-fixed: #003f43;
+  --color-on-secondary-fixed-variant: #005e64;
+
+  --color-tertiary: #a2ffbf;
+  --color-tertiary-dim: #00ed89;
+  --color-tertiary-fixed: #00fd93;
+  --color-tertiary-fixed-dim: #00ed89;
+  --color-tertiary-container: #00fd93;
+  --color-on-tertiary: #006437;
+  --color-on-tertiary-container: #005b31;
+  --color-on-tertiary-fixed: #004624;
+  --color-on-tertiary-fixed-variant: #006638;
+
+  --color-error: #ff6e84;
+  --color-error-dim: #d73357;
+  --color-error-container: #a70138;
+  --color-on-error: #490013;
+  --color-on-error-container: #ffb2b9;
+
+  --color-background: #0e0e0e;
+  --color-on-background: #ffffff;
+  --color-surface: #0e0e0e;
+  --color-surface-dim: #0e0e0e;
+  --color-surface-bright: #2c2c2c;
+  --color-surface-tint: #df8eff;
+  --color-surface-variant: #262626;
+  --color-surface-container-lowest: #000000;
+  --color-surface-container-low: #131313;
+  --color-surface-container: #1a1919;
+  --color-surface-container-high: #201f1f;
+  --color-surface-container-highest: #262626;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #adaaaa;
+  --color-inverse-surface: #fcf8f8;
+  --color-inverse-on-surface: #565554;
+
+  --color-outline: #777575;
+  --color-outline-variant: #494847;
+  --color-muted: #a0a0a0;
+
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-label: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-pill: 9999px;
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --radius-xl: 2.5rem;
+  --radius-2xl: 3rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Only hide native cursor when the custom cursor is actually mounted & ready */
+@media (pointer: fine) {
+  html[data-cursor-ready="true"] body,
+  html[data-cursor-ready="true"] body * {
+    cursor: none;
+  }
+  /* Preserve I-beam affordance for readable text */
+  html[data-cursor-ready="true"] body p,
+  html[data-cursor-ready="true"] body h1,
+  html[data-cursor-ready="true"] body h2,
+  html[data-cursor-ready="true"] body h3,
+  html[data-cursor-ready="true"] body h4,
+  html[data-cursor-ready="true"] body li,
+  html[data-cursor-ready="true"] body span:not([class*="material-symbols"]) {
+    cursor: text;
+  }
+  html[data-cursor-ready="true"] body a,
+  html[data-cursor-ready="true"] body button,
+  html[data-cursor-ready="true"] body [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Skip link — visible only when focused */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* Visible focus ring for keyboard users — respects element's own shape */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+.parallax-will-change {
+  will-change: transform;
+}
+
+/* Headlines: prevent orphan last lines */
+h1,
+h2 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Film grain overlay for tactile depth */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .grain-overlay {
+    display: none;
+  }
+}
+
+/* Editorial meta label — mono 11px uppercase wide tracking */
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-on-surface-variant);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ——— Showcase typography helpers ——— */
+.font-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "ss01" 1;
+}
+
+/* ——— Marquee (continuous horizontal scroll) ——— */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 42s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ——— Index row hover affordance ——— */
+.index-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  gap: clamp(0.75rem, 3vw, 3rem);
+  align-items: baseline;
+  padding-block: clamp(1.1rem, 2.4vw, 2rem);
+  border-bottom: 1px solid color-mix(in oklab, white 8%, transparent);
+  transition: padding-left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 768px) {
+  .index-row {
+    grid-template-columns: 4rem 1fr auto auto;
+  }
+}
+.index-row:first-child {
+  border-top: 1px solid color-mix(in oklab, white 8%, transparent);
+}
+.index-row:hover {
+  padding-left: 1.5rem;
+}
+.index-row .index-title {
+  transition: color 0.4s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+}
+.index-row:hover .index-title {
+  color: var(--color-primary-fixed);
+  transform: translateX(0.25rem);
+}
+
+/* ——— Case metadata strip ——— */
+.meta-row {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.75rem;
+  padding-block: 0.8rem;
+  border-bottom: 1px solid color-mix(in oklab, white 7%, transparent);
+  font-size: 0.78rem;
+}
+@media (min-width: 640px) {
+  .meta-row {
+    grid-template-columns: 8rem 1fr;
+    gap: 1rem;
+    padding-block: 0.9rem;
+  }
+}
+.meta-row:first-child {
+  border-top: 1px solid color-mix(in oklab, white 7%, transparent);
+}
+.meta-row dt {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-on-surface-variant);
+  font-size: 0.68rem;
+  padding-top: 0.15rem;
+}
+.meta-row dd {
+  color: var(--color-on-surface);
+  font-weight: 500;
+}
+
+/* ——— Mix blend text on grain ——— */
+.blend-screen {
+  mix-blend-mode: screen;
+}
