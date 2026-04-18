@@ -7,7 +7,7 @@ const socials = [
   { label: 'Behance', href: '#', handle: 'aetheric' },
   { label: 'Are.na', href: '#', handle: 'aetheric-archive' },
   { label: 'Vimeo', href: '#', handle: 'aetheric' },
-].map((s) => ({ ...s, aria: `AETHERIC ${s.label} 프로필 (${s.handle})` }))
+].map((s) => ({ ...s, aria: `${s.label} 프로필 (${s.handle})` }))
 
 export default function Contact() {
   const sectionRef = useRef(null)

@@ -262,9 +262,9 @@ function ProjectIndex() {
               onMouseEnter={() => setHovered(w)}
               onMouseLeave={() => setHovered((h) => (h?.n === w.n ? null : h))}
             >
-              <a
+            <a
                 href={`#work-${w.n}`}
-                aria-label={`작업 ${w.n} — ${w.title}, ${w.sector}, ${w.year}, ${w.prize}`}
+                aria-label={`작업 ${w.n} — ${w.title}`}
                 className="index-row focus-visible:outline-none focus-visible:bg-white/[0.03]"
               >
                 <span className="font-mono text-xs tracking-[0.15em] text-on-surface-variant">
